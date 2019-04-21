@@ -11,7 +11,7 @@ def get_pitches(category):
         pitches_results = process_results(pitches_result_list)
 
 
-   return pitch_results
+    return pitch_results
 
 def process_results(pitch_list):
     '''
