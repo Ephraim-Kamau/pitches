@@ -1,6 +1,5 @@
 import unittest
-from models import pitch
-Pitch = pitch.Pitch
+from app.models import Pitch
 
 class PitchTest(unittest.TestCase):
     '''
@@ -17,5 +16,3 @@ class PitchTest(unittest.TestCase):
         self.assertTrue(isinstance(self.new_pitch,Pitch))
 
 
-if __name__ == '__main__':
-    unittest.main()
