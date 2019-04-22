@@ -1,7 +1,9 @@
-{% macro displayPitches(pitch_list) %}
+{% macro displayPitches(pitches_list) %}
 
-    {% for pitch in pitches_list %}
-        <li>{{ pitch.pitch}}</li>
-    {% endfor %}
-
+    <p>{{pitch.pitch}}</p>
+    <br>
+    <a href="{{url_for('main.new_comment',id=pitch.id)}}">Add a Comment</a>
+    <a href="{{url_for('main.view_comments',id=pitch.id)}}">View Comments</a>
+    <a href="{{url_for('main.new_comment',id=pitch.id)}}">Vote</a>
+</div> 
 {% endmacro %}
