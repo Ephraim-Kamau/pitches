@@ -4,8 +4,7 @@ class Config:
     '''
     General configuration parent class
     '''
-    pass
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://ephraim:123@localhost/pitches'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://ephraim:server123@localhost/pitches'
 
 
 
