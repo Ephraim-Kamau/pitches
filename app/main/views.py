@@ -1,6 +1,7 @@
 from flask import render_template,request,redirect,url_for
 from . import main
 from .forms import ReviewForm
+from flask_login import login_required
 
 
 # Views
@@ -48,6 +49,7 @@ def promotion():
 
 
 @main.route('/review/new/', methods = ['GET','POST'])
+@login_required
 def new_review():
      '''
      Function that creates new pitches
