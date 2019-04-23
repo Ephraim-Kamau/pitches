@@ -2,8 +2,9 @@ from flask import render_template,request,redirect,url_for, abort
 from . import main
 from .forms import ReviewForm,UpdateProfile
 from .. import db,photos
-from flask_login import login_required
+from flask_login import login_required, current_user
 from ..models import Reviews, User
+ 
 
 
 # Views
@@ -56,15 +57,19 @@ def new_review():
      '''
      Function that creates new pitches
      '''
-     review = ReviewForm() 
+     form = ReviewForm()
+     pitch = get_pitch(id) 
 
      if form.validate_on_submit():
          review = form.content.data
          category_id = form.category_id.data
-         new_review = Review(review = review, category_id = category_id)
 
+        # Updated review(pitch) instance
+         new_review = Review(pitch_id = pitch.id,user = current_user)
+
+        # save review (pitch) method
          new_review.save_review()
-         return redirect(url_for('main.index'))
+         return redirect(url_for('.pitch', id = pitch.id))
 
      return render_template('new_review.html', new_review_form = form, category = category)     
 
