@@ -1,4 +1,4 @@
-### PITCHES APP
+#### PITCHES APP
 This is an application that allows users to write their pitch and submit it for reviews. The users can also view pitches made by others, comment on them and also vote for them.
 
 ### By Ephraim Kamau
@@ -20,7 +20,7 @@ This is an application that allows users to write their pitch and submit it for 
 <li>Clone the Pitches directory</li>
 <li>Open the start.sh file and change the credentials to match yours</li>
 <li>Run chmod a+x start.sh on the terminal</li>
-<li>Run ./start.sh on the terminal. Open the app on your browaer</li>
+<li>Run ./start.sh on the terminal then open the app on your browser</li>
 </ul>
 
 
