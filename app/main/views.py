@@ -4,7 +4,7 @@ from .forms import ReviewForm,UpdateProfile
 from .. import db,photos
 from flask_login import login_required, current_user
 from ..models import Review, User,Pitch
- 
+import markdown2   
 
 
 # Views
@@ -71,6 +71,7 @@ def new_review():
          new_review.save_review()
          return redirect(url_for('.review', id = review.id))
 
+     
      return render_template('new_review.html', new_review_form = form)     
 
 @main.route('/user/<uname>/update',methods = ['GET','POST'])
@@ -119,7 +120,7 @@ def profile(uname):
 @login_required
 def review(id):
     pitch_id=id
-    pitch=Pitches.query.all();
+    pitch=Pitches.query.all()
     title="Write a comment"
     form=ReviewForm()
     if form.validate_on_submit():
