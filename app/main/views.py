@@ -3,7 +3,7 @@ from . import main
 from .forms import ReviewForm,UpdateProfile
 from .. import db,photos
 from flask_login import login_required, current_user
-from ..models import Review, User
+from ..models import Review, User,Pitch
  
 
 
@@ -101,4 +101,33 @@ def update_pic(uname):
         path = f'photos/{filename}'
         user.profile_pic_path = path
         db.session.commit()
-    return redirect(url_for('main.profile',uname=uname))    
+    return redirect(url_for('main.profile',uname=uname))   
+
+@main.route('/user/<uname>')
+def profile(uname):
+    user=User.query.filter_by(username=uname).first()
+    
+    if user is None:
+        abort()
+
+    
+    title=uname
+
+    return render_template("profile/profile.html", user = user,title=title)
+
+@main.route("/pitch/new/review/<int:id>", methods =["GET","POST"])
+@login_required
+def review(id):
+    pitch_id=id
+    pitch=Pitches.query.all();
+    title="Write a comment"
+    form=ReviewForm()
+    if form.validate_on_submit():
+        title=form.title.data
+        comments=form.comments.data
+
+        review=Comments(pitch_id=id, pitch_title=title, comments=comments, user=current_user)
+
+        review.save_comment
+        return redirect(url_for('.review', id=pitch_id))
+

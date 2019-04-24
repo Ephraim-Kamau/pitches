@@ -9,10 +9,12 @@
             </button>
             <a class="navbar-brand" href="/"> Pitches </a>
 
+            {% if current_user.is_authenticated %}
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="sr-only">Toggle navigation</span>
             </button>    
                 <a class="navbar-brand" href="{{url_for('main.product')}}">Product Pitch</a>
+               
             
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -31,12 +33,17 @@
                 </button>    
                 <a class="navbar-brand" href="{{url_for('main.interview')}}">Interview Pitch</a>
 
+                {% else %}
+                <p></p>
+                {%endif%}
+
             </div>
 
                 <ul class="nav navbar-nav navbar-right">
                         {% if current_user.is_authenticated %}
-                        
+                        <a class="navbar-brand" href="{{url_for('main.profile',uname=current_user.username)}}">Profile</a>
                         <li><a href="{{url_for('auth.logout')}}">Sign Out</a></li>
+                        
                         {% else %}
                         <li><a href="{{url_for('auth.login')}}">Sign In</a></li>
                         {%endif%}
