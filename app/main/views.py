@@ -3,7 +3,7 @@ from . import main
 from .forms import ReviewForm,UpdateProfile
 from .. import db,photos
 from flask_login import login_required, current_user
-from ..models import Reviews, User
+from ..models import Review, User
  
 
 

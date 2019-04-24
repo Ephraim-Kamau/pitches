@@ -18,33 +18,6 @@ class Pitch:
         self.pitch = pitch
 
 
-class Reviews:
-
-    all_reviews = []
-
-    def __init__(self,pitch_id, pitch, review):
-        self.pitch_id = pitch_id
-        self.pitch = pitch
-        self.review = review
-
-    def save_review(self):
-        Review.all_reviews.append(self)
-
-    @classmethod
-    def clear_reviews(cls):
-        Review.all_reviews.clear()        
-
-    @classmethod
-    def get_reviews(cls,id):
-
-        response = []
-
-        for review in cls.all_reviews:
-            if review.pitch_id == id:
-                response.append(review)
-
-        return response  
-
 class Review(db.Model):
 
     __tablename__ = 'reviews'
@@ -54,6 +27,9 @@ class Review(db.Model):
     pitch = db.Column(db.String)
     review = db.Column(db.String)
     posted = db.Column(db.DateTime,default=datetime.utcnow)
+    role_id=db.Column(db.Integer,db.ForeignKey('users.id'))
+
+    
 
     def save_review(self):
         db.session.add(self)
@@ -70,18 +46,16 @@ class User(UserMixin,db.Model):
     id = db.Column(db.Integer,primary_key = True)
     username = db.Column(db.String(255))
     email = db.Column(db.String(255),unique = True,index = True)
-    role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String())
-    password_hash = db.Column(db.String(255))
     pass_secure = db.Column(db.String(255))
+    role_id=db.Column(db.Integer,db.ForeignKey('roles.id'))
+    reviews=db.relationship("Review",backref='user',lazy='dynamic')
 
-    reviews = db.relationship('Review',backref = 'user',lazy = "dynamic")
 
     @property
     def password(self):
         raise AttributeError('You cannot read the password attribute')
-
     @password.setter
     def password(self, password):
         self.pass_secure = generate_password_hash(password)

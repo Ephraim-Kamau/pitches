@@ -2,38 +2,25 @@
 {% import 'bootstrap/wtf.html' as wtf%}
 
 {% block content %}
-<div class="container">
-<div class="row">
-<div class="col-md-2"> </div>
-<div class="col-md-8">
+<div class="container"> 
+    <div class="row">
+      <div class= "col-md-2"> </div>
+      <div class="col-md-8">
+          
+      <!--Flash message -->
+      {% for message in get_flashed_messages() %}
+        <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ message }}
+        </div>
+      {% endfor %}
 
-{{wtf.quick_form(registration_form)}}
-
-<div class="col-xs-12 col-sm-6 col-md-6">
-        <div class="thumbnail">
-            <div class="caption">
-                <h4 style="font-size:30px; font-family: 'Akronim', cursive">Sign Up</h4>
-                <hr>
-                
-        <h4 style="font-size:20px; font-family: 'Akronim', cursive">Username</h4>
-        <input type = "text" placeholder = "Enter username" name  = "username" required>
-        <br>
-
-        <h4 style="font-size:20px; font-family: 'Akronim', cursive">Email</h4>
-        <input type = "text" placeholder = "Enter email" name  = "email" required>
-        <br>
-
-        <h4 style="font-size:20px; font-family: 'Akronim', cursive">Password</h4>
-        <input type = "password" placeholder = "Enter password" name  = "password" required>
-        <br>
-
-        <h4 style="font-size:20px; font-family: 'Akronim', cursive">Password</h4>
-        <input type = "password" placeholder = "Re-enter password" name  = "password" required>
-        <br>
-        <br>
-
-        <button type="submit btn-success" class="registerbtn btn btn-success center-block ">Register</button>
-
+      <!-- Registration form -->
+      {{wtf.quick_form(registration_form)}}
+      <a href="{{url_for('auth.register')}}"></a>
+     </div>
+     <div clas="col-md-2"> </div>
     </div>
-</form>
+</div>
+
 {% endblock%}
