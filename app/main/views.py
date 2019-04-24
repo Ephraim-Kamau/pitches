@@ -51,27 +51,27 @@ def promotion():
     return render_template('promotion.html')
 
 
-@main.route('/review/new/', methods = ['GET','POST'])
+@main.route('/review/new', methods = ['GET','POST'])
 @login_required
 def new_review():
      '''
      Function that creates new pitches
      '''
      form = ReviewForm()
-     pitch = get_pitch(id) 
+    
 
      if form.validate_on_submit():
          review = form.content.data
          category_id = form.category_id.data
 
         # Updated review(pitch) instance
-         new_review = Review(pitch_id = pitch.id,user = current_user)
+         new_review = Review(review_id = review.id,user = current_user)
 
         # save review (pitch) method
          new_review.save_review()
-         return redirect(url_for('.pitch', id = pitch.id))
+         return redirect(url_for('.review', id = review.id))
 
-     return render_template('new_review.html', new_review_form = form, category = category)     
+     return render_template('new_review.html', new_review_form = form)     
 
 @main.route('/user/<uname>/update',methods = ['GET','POST'])
 @login_required

@@ -4,19 +4,19 @@
 <div class="container">
 <div class="row">
 <!-- displaying  Username-->
-  <div class="col-md-4">
+  <div class="col-md-12">
     <h3> {{user.username| capitalize}} </h3>
 
     <!--Displaying user bio-->
     {% if user.bio %}
       <p> {{user.bio}}</p>
     {%else%}
-      <p> {{user.username| capitalize}} has no bio </p>
+      <p></p>
     {% endif %}
   </div>
 
   <!--Display profile photo-->
-  <div class="col-md-4">
+  <div class="col-md-12">
 
     {% if user.profile_pic_path %}
     <img src="{{url_for('static',filename=user.profile_pic_path)}}" alt="" class="img-thumbnail">
@@ -33,6 +33,12 @@
       <input type="submit">
     </form>
     {% endif %}
+
+  <!-- Displaying user pitches-->  
+  <div clas="col-md-8">
+    <hr>
+      <h3>Here are the pitches you have created so far:</h3>
+  </div>
 
   </div>
 </div>
