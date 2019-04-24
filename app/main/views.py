@@ -18,37 +18,37 @@ def index():
     title = 'Home - Welcome to the best Pitches Site'
     return render_template('index.html', title = title)
 
-@main.route('/pickUpLines/')
+@main.route('/pickUpLines/pitches')
 def pickUpLines():
     '''
     View categories page function that returns the pickUpLines category and its data
     '''
-    pitches = Pitch.get_pitches('pickUpLines')
-    return render_template('pickUpLines.html', pitches = pitches)    
 
-@main.route('/product/')
+    return render_template('pickUpLines.html')    
+
+@main.route('/product/pitches')
 def product():
     '''
     View categories page function that returns the product pitch category and its data
     '''
-    pitches = Pitch.get_pitches('product')
-    return render_template('product.html', pitches = pitches)        
+    
+    return render_template('product.html')        
 
-@main.route('/interview/')
+@main.route('/interview/pitches')
 def interview():
     '''
     View categories page function that returns the interview pitch category and its data
     '''
-    pitches = Pitch.get_pitches('interview')
-    return render_template('interview.html', pitches = pitches)     
+    
+    return render_template('interview.html')     
 
-@main.route('/promotion/')
+@main.route('/promotion/pitches')
 def promotion():
     '''
     View categories page function that returns the promotion pitch category and its data
     '''
-    pitches = Pitch.get_pitches('promotion')
-    return render_template('promotion.html', pitches = pitches)
+    
+    return render_template('promotion.html')
 
 
 @main.route('/review/new/', methods = ['GET','POST'])
