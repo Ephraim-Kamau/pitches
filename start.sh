@@ -1,4 +1,3 @@
-export SECRET_KEY='server123'
 export MAIL_USERNAME='kephraim19@gmail.com'
 export MAIL_PASSWORD='#ifiwaslike46$'
 

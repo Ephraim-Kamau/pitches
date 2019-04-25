@@ -116,19 +116,34 @@ def profile(uname):
 
     return render_template("profile/profile.html", user = user,title=title)
 
-@main.route("/pitch/new/review/<int:id>", methods =["GET","POST"])
+@main.route("/review/comments", methods =["GET","POST"])
 @login_required
-def review(id):
-    pitch_id=id
-    pitch=Pitches.query.all()
+def review():
+
     title="Write a comment"
     form=ReviewForm()
     if form.validate_on_submit():
         title=form.title.data
         comments=form.comments.data
 
-        review=Comments(pitch_id=id, pitch_title=title, comments=comments, user=current_user)
+        review=Comments( pitch_title=title, comments=comments, user=current_user)
 
         review.save_comment
-        return redirect(url_for('.review', id=pitch_id))
+        return redirect(url_for('.review'))
+
+   
+    return render_template('comments.html',title=title, comments_form = form) 
+
+'''
+up down vote
+'''
+
+def upVote():
+    vote=0
+
+
+def downVote():
+    pass    
+
+
 
