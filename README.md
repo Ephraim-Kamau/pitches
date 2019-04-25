@@ -1,9 +1,12 @@
 ## PITCHES APP
-This is an application that allows users to write their pitch and submit it for reviews. The users can also view pitches made by others, comment on them and also vote for them.
+This is an application that allows users to write their pitch and submit it for reviews. 
 
 ### By Ephraim Kamau
 
 ### Description
+The application allows users to view pitches written by others, vote on them and also comment on them. Users can also write their pitches and post them on the app.
+
+
 
 | User Action                       |          Input                        |    Output                             |
 |-----------------------------------|---------------------------------------|---------------------------------------|
